@@ -1,0 +1,60 @@
+sb002Mybatis/
+    src/
+        main/
+            java/
+                com/
+                    example/
+                        sb002mybatis/
+                            controller/
+                                UserController（类）
+                            mapper/
+                                UserMapper（接口）
+                            pojo/
+                                User（类）
+                            service/
+                                impl/
+                                    UserServiceImpl（类）
+                                UserService（接口）
+                            Sb002MybatisApplication（启动类）
+            resources/
+                application.yml
+            test/
+    pom.xml
+
+
+这个sb002Mybatis项目是一个典型的Spring Boot项目，整合了MyBatis作为ORM框架。下面是对项目目录结构的详细分析：
+
+总体结构
+    src/main/java/：存放主要的Java源代码。
+    src/main/resources/：存放项目的资源文件，如配置文件。
+    src/test/：存放测试代码。
+细节分析
+    controller/UserController：
+        控制器层，用于处理Web请求。
+        UserController类可能包含处理与用户相关的HTTP请求的方法，如查询用户信息、添加用户等。
+    mapper/UserMapper：
+        MyBatis的映射器接口，定义了与数据库交互的SQL语句。
+        UserMapper接口通常包含CRUD（创建、读取、更新、删除）操作的方法声明。
+    pojo/User：
+        持久化对象（Plain Old Java Object），与数据库表对应。
+        User类通常包含用户的基本属性，如ID、用户名、密码等，以及相应的getter和setter等方法。
+    service/impl/UserServiceImpl：
+        服务实现层，实现了UserService接口。
+        UserServiceImpl类包含具体的业务逻辑实现，它通常会调用UserMapper接口中的方法来执行数据库操作。
+    service/UserService：
+        服务接口层，定义了与用户相关的业务逻辑方法。
+        UserService接口定义了服务层应该提供的服务，具体的实现由UserServiceImpl完成。
+    Sb002MybatisApplication：
+        Spring Boot的启动类，包含了主方法main，用于启动Spring Boot应用。
+        这个类通常使用@SpringBootApplication注解，
+        它集成了多个常用注解，如@Configuration、@EnableAutoConfiguration和@ComponentScan。
+    src/main/resources/application.yml
+        配置文件，用于配置Spring Boot应用的各种参数，
+        如数据库连接信息、日志级别、端口号等。这里使用了YAML格式（.yml），
+        这是一种人类友好的数据序列化标准，易于阅读和编写。
+    src/test/
+        测试代码目录，用于存放单元测试和集成测试的代码。
+        在Spring Boot项目中，通常会使用JUnit框架进行单元测试，并使用Spring Test Context来加载Spring应用上下文。
+总结
+    该sb002Mybatis项目的目录结构符合Spring Boot和MyBatis的典型整合方式，层次清晰，结构合理。
+    每个层级的职责明确，便于开发和维护。同时，遵循了Java的命名规范和最佳实践，使得代码易于阅读和理解。

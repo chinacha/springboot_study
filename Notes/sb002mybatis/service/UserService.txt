@@ -1,0 +1,9 @@
+public interface UserService {
+    public User findById(Integer id);
+}
+
+接口定义
+    UserService是一个接口，没有实现具体的业务逻辑。
+    它通常会被一个或多个实现类来实现，这些实现类会包含具体的业务逻辑代码。
+    在Spring框架中，可以通过@Service注解来标识这个接口的实现类，使其被Spring容器管理。
+

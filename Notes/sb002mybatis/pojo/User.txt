@@ -1,0 +1,31 @@
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class User {
+
+    private Integer id;
+    private String name;
+    private Short age;
+    private Short gender;
+    private String phone;
+}
+
+
+这个User类在Spring Boot项目中是一个典型的POJO（Plain Old Java Object，简单老式Java对象）
+通常用于映射数据库中的一张表，以便在Java应用中进行操作。
+这个类具有一些基本属性，例如id、name、age、gender和phone，这些属性对应于数据库中用户表的一些字段。
+
+具体来说：
+id：通常是主键，用于唯一标识一个用户。
+name：用户的名字或用户名。
+age：用户的年龄，用Short类型表示，尽管在实际应用中可能使用Integer或LocalDate等类型更合适。
+gender：用户的性别，这里也是用Short类型表示。常见的做法是使用枚举类型（enum）来表示性别，以提高代码的可读性和安全性。
+phone：用户的电话号码。
+
+类上的注解解释如下：
+
+@Data：这是Lombok库提供的注解，用于自动生成getter、setter、equals()、hashCode()和toString()方法。这减少了手动编写这些方法的需要，使得代码更加简洁。
+@NoArgsConstructor：Lombok提供的注解，用于自动生成一个无参构造函数。
+@AllArgsConstructor：Lombok提供的注解，用于自动生成一个包含所有字段的构造函数。
+
+总之，这个User类的主要作用是作为数据库表中用户数据的Java表示，通过它可以方便地在Java应用中进行用户数据的创建、查询、更新和删除等操作。

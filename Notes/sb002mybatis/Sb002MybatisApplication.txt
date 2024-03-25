@@ -1,0 +1,58 @@
+源代码：
+@SpringBootApplication
+public class Sb002MybatisApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Sb002MybatisApplication.class, args);
+    }
+}
+
+1. @SpringBootApplication
+    这是一个复合注解，包含了以下三个注解：
+
+        i. @SpringBootConfiguration:
+            @SpringBootConfiguration标注在一个类上，用来告诉springboot这个类是一个配置类。标注这是一个配置类后就有了下面两个作用：
+            1）springboot的自动配置处理功能：
+                Spring Boot会根据添加的依赖和类路径中的项目结构自动配置应用（整个项目）。
+                例如，如果你的项目中包含了Spring Web的依赖，Spring Boot会自动配置Servlet容器、DispatcherServlet等组件，而无需你手动配置。
+
+                a. 既然@SpringBootConfiguration告诉了springboot要自动配置整个应用程序（也就是整个项目）
+                那为什么要注解在一个类上呢？或者说，为什么要直接在这个启动类上呢？
+                    是这样的：
+                    因为要配置整个应用（项目），所以要在程序启动的时候进行配置；
+                    而且springboot遇到相应的注解时就会开始配置整个应用，所以将这个表示着“配置整个应用（项目）”的命令的注解放在项目启动的时候，
+                    也就是放在启动类中，所以启动类又是一个特殊的配置类
+                b. @SpringBootConfiguration和@Configuration的区别：
+                    @SpringBootConfiguration 是一个特殊的 @Configuration，
+                    这句话的意思是 @SpringBootConfiguration 是基于 @Configuration 的一个派生注解，
+                    二者在功能上是一致的，都是用于标识一个配置类，
+                    使得该类可以被 Spring 容器扫描并处理其中的 bean 定义。
+                    但是也不太一样：
+                    @SpringBootConfiguration是springboot特有的，而@Configuration是spring的
+                    反正记住：在springboot中用@SpringBootConfiguration就行了，
+                    而@SpringBootConfiguration又包含在@SpringBootApplication，所以知道什么意思就行
+
+            2）既然有了@SpringBootConfiguration的类是一个配置类了，那么就可以在这个配置类中定义bean
+                a. bean是什么？
+                    bean是Spring IoC容器管理的所有对象的统称，
+                    这些对象可以是通过Spring Boot的自动配置创建的，也可以是通过开发者手动配置创建的。
+                b. 并不是只能在配置类中定义bean，而是在配置类中定义bean是“定义bean”的方式之一
+
+        ii.@EnableAutoConfiguration
+            @EnableAutoConfiguration也是实现让springboot自动配置整个项目的，都是为了简化操作。
+            和@SpringBootConfiguration差不多
+            作为初学者，没必要研究那么深
+
+        iii. @ComponentScan
+            让springboot/spring扫描当前包及其子包下的组件、配置和服务
+            具体来说，@ComponentScan注解告诉Spring容器去“扫描”指定的包及其子包，
+            查找那些带有特定注解（如@Component、@Service、@Repository、@Controller等）的类，
+            并将这些类作为bean注册到Spring容器中进行管理。
+
+            这里的“扫描”的意思：
+            简单的说，这个“扫描”在springboot中也是一种配置的意思，
+            只不过不是配置整个项目，而是“扫描”到什么东西就配置什么东西
+
+2. SpringApplication.run(Sb002MybatisApplication.class, args)
+    作为初学者，没必要研究太深，现在知道：
+   这是springboot进行启动必不可少的一个方法就行了

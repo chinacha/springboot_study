@@ -1,0 +1,44 @@
+@RestController
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @RequestMapping("/findById")
+    public User findById(Integer id) {
+        return userService.findById(id);
+    }
+}
+这段代码是一个简单的Spring MVC控制器，用于处理与用户相关的请求。下面我会逐行分析这段代码：
+
+
+@RestController
+    是Spring MVC中的一个注解，它表示这个类是一个RESTful Web服务的控制器。
+    这个注解是@Controller和@ResponseBody的组合。
+    使用@RestController注解的类中的方法默认都会添加@ResponseBody注解，
+    这意味着这些方法的返回值会自动转换为JSON或XML格式的数据，并直接写入HTTP响应体中。
+
+
+public class UserController
+这一行定义了一个名为UserController的公共类。
+
+
+@Autowired
+    是Spring框架中的一个注解，用于自动装配bean。在这个例子中，@Autowired注解告诉Spring自动查找并注入一个UserService类型的bean到userService`字段中。
+
+
+private UserService userService;
+    这一行定义了一个私有的UserService类型的字段userService。UserService可能是一个接口，用于定义与用户相关的业务逻辑。
+
+
+@RequestMapping("/findById")
+    @RequestMapping 是Spring MVC中的一个注解，用于映射Web请求到特定的处理器函数。
+    在这个例子中，它映射了HTTP GET请求到/findById路径到findById方法。
+
+
+public User findById(Integer id) {
+    这一行定义了一个公共方法findById，它接受一个Integer类型的参数id，并返回一个User类型的对象。
+
+
+return userService.findById(id);
+这一行调用userService的findById方法，并将传入的id作为参数。这个方法可能会从数据库中查询具有给定ID的用户，并返回一个User对象。然后，这个User对象会被直接写入HTTP响应体中，因为UserController类上有@RestController注解。

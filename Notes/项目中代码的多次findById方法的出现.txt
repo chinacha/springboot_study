@@ -1,0 +1,29 @@
+mapper接口：
+service接口：
+service实现类：
+controller层实现类：
+
+在这四段代码中，findById 方法一共出现了四次，但每次的含义和上下文都是不同的。下面是对每次出现的详细解释：
+接口中的方法都是抽象方法，只有在实现类中的才是完整的方法
+1. Mapper接口中的 findById
+含义：定义了一个查询数据库以根据ID查找用户的方法
+上下文：在 UserMapper 接口中，findById 方法是一个抽象方法，它使用MyBatis的 @Select 注解来指定SQL查询语句。这个方法的目的是声明一个数据库查询操作，但没有具体的实现。
+
+2. Service接口中的 findById
+含义：声明了服务层应该提供的一个功能，即根据用户ID查找用户。
+上下文：在 UserService 接口中，findById 方法是一个抽象方法，它定义了服务层应该提供的业务逻辑。这个方法的声明告诉其他类（如控制器或服务实现类）这个服务能够执行的操作。
+
+3. Service实现类中的 findById
+含义：实现了服务层中声明的 findById 方法，通过调用Mapper层的方法来完成实际的用户查找。
+上下文：在 UserServiceImpl 类中，findById 方法是 UserService 接口的具体实现。它使用 @Autowired 注解注入了 UserMapper 的实例，并调用其 findById 方法来执行数据库查询。这个方法是业务逻辑的具体实现。
+
+4. Controller层实现类中的 findById
+含义：定义了一个HTTP请求的处理方法，用于响应客户端的查找用户请求。
+上下文：在 UserController 类中，findById 方法是一个HTTP请求映射方法，它使用 @RequestMapping 注解来指定该方法应响应 /findById 路径的GET请求。当客户端发送一个请求到这个路径时，这个方法会被调用，并返回查询到的用户信息。这个方法是应用程序与外界交互的入口点。
+
+总结
+Mapper接口中的 findById：定义了如何与数据库交互来查询用户。
+Service接口中的 findById：声明了服务层应该提供的功能。
+Service实现类中的 findById：实现了服务层声明的功能，通过调用Mapper层完成实际操作。
+Controller层实现类中的 findById：定义了HTTP请求的处理逻辑，与外部世界交互。
+这四个方法虽然同名，但在各自的上下文中扮演着不同的角色，共同构成了应用程序的不同层次和功能。

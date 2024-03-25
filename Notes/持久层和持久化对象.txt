@@ -1,0 +1,31 @@
+在Spring Boot整合MyBatis的项目中
+mapper/UserMapper和pojo/User分别代表了持久层和持久化对象（POJO）
+它们在职责和角色上有所区别，但同时又紧密协作。
+
+mapper/UserMapper（持久层）
+
+    UserMapper是一个接口，它位于持久层，用于定义与数据库交互的SQL语句。
+    这个接口通常不会包含具体的实现代码，而是使用MyBatis的注解或XML映射文件来声明SQL语句。
+    UserMapper接口中的方法声明了如何对数据库中的用户数据进行查询、插入、更新和删除等操作。
+
+    在运行时，MyBatis会根据这些声明动态地生成实现类，并注入到Spring容器中。
+    当服务层需要执行数据库操作时，它会调用UserMapper接口中的方法，MyBatis会负责执行相应的SQL语句，并将结果映射回Java对象。
+
+pojo/User（持久化对象）
+
+    User是一个普通的Java类，它代表了数据库中的用户记录。这个类包含了用户的各个属性（如ID、用户名、密码等）
+    以及相应的getter和setter等方法。User类是一个持久化对象（POJO），因为它可以被持久化到数据库中，也可以从数据库中恢复出来。
+
+在MyBatis中，User类通常作为SQL语句执行后的结果映射对象。
+当执行查询操作时，MyBatis会将查询结果映射到User类的实例上，使得服务层可以直接操作这些对象，而无需关心底层的数据库操作。
+
+区别与联系
+    职责不同：UserMapper负责定义与数据库交互的SQL语句，而User则负责表示数据库中的用户记录。
+    关注点不同：UserMapper关注的是如何执行数据库操作，而User关注的是如何表示用户数据。
+    协作关系：它们之间紧密协作。UserMapper使用User类作为结果映射对象，将数据库中的数据转换为Java对象；
+    同时，服务层通过调用UserMapper的方法，并传递或接收User对象来执行数据库操作。
+总结
+    UserMapper和User在Spring Boot整合MyBatis的项目中各自扮演着不同的角色，
+    但它们又相互依赖、相互协作，共同实现了对数据库的用户数据的操作和管理。
+    UserMapper定义了如何与数据库交互，而User则提供了数据的表示方式。
+    这种分工使得代码更加清晰、易于维护，并且提高了开发效率。

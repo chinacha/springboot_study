@@ -1,0 +1,24 @@
+1. 要使用Lombok要在pom.xml中引入以下依赖：
+
+<!--Lombok引入-->
+<dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+</dependency>
+
+2. Lombok的作用：
+Lombok是一个强大的java库，通过注解的方式帮助开发者自动生成一些常见但繁琐的代码，如getter、setter、有参无参构造方法、equal()、hashcode()、toString()等
+这样，可以专注于编写业务逻辑。
+Lombok不仅简化了代码，还提高了代码的可读性和可维护性；Lombok生成的代码与手动编写的代码在功能上是等效的，不会引入任何运行时开销或性能问题
+
+    2.1 @Data
+        注解在类上，提供setter、getter、toString等方法
+    2.2 @NoArgsConstructor
+        注解在类上，可以通过无参构造函数
+    2.3 @AllArgsConstructor
+        注解在类上，可以提供全参构造函数
+
+3. Lombok原理：
+在编译时，通过Java的注解处理器（Annotation Processor）自动插入这些方法的字节码。
+这意味着在源代码中，你不需要显式地编写这些方法，但在编译后的字节码文件中，这些方法会被正确地生成。
+因此，在IDE中，虽然看不到这些自动生成的方法，但在运行时，它们会像手动编写的代码一样正常工作。

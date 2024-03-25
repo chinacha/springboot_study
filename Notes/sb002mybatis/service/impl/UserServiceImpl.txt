@@ -1,0 +1,41 @@
+@Service
+    这是一个Spring的注解，它表示这个类是一个服务组件。
+    Spring会扫描到这个注解，并在应用启动时自动地将其实例化，并将其加入到Spring的容器中，供其他组件使用。
+
+public class UserServiceImpl implements UserService
+    这定义了一个名为UserServiceImpl的公共类，它实现了UserService接口。
+    这意味着UserServiceImpl必须提供UserService中声明的所有方法的具体实现。
+
+@Override
+    这个注解表示下面的方法是重写了一个父类或接口中的方法。在这里，它表示findById方法是从UserService接口中重写的。
+
+@Autowired的作用：
+    @Autowired 是 Spring 框架中的一个核心注解，用于自动装配 bean。
+    在 Spring 的依赖注入（DI）机制中，@Autowired 扮演了非常重要的角色，帮助开发者减少手动配置和编码的工作量。
+
+  以下是 @Autowired 注解的主要作用：
+
+    1. 自动装配 Bean
+        当你在 Spring 管理的 bean 中声明一个字段或构造函数、setter 方法，并使用 @Autowired 注解时，Spring 容器会自动查找匹配的 bean 并将其注入到相应的字段或方法中。这样，你就不需要手动在配置文件中设置 bean 的依赖关系。
+
+        例如：
+
+        @Service
+        public class UserServiceImpl implements UserService {
+
+            @Autowired
+            private UserMapper userMapper;
+
+            // ... 其他代码 ...
+        }
+        在上面的代码中，UserMapper 是一个接口，它可能被实现为一个与数据库交互的 MyBatis mapper。
+        使用 @Autowired 注解后，Spring 会自动查找实现了 UserMapper 接口的 bean，并将其注入到 userMapper 字段中。
+
+    2. 支持多种注入方式
+        @Autowired 可以用于字段、构造函数、setter 方法等多种注入方式。
+
+        字段注入：直接将依赖注入到类的字段中。
+        构造函数注入：通过构造函数参数进行注入。
+        Setter 方法注入：通过 setter 方法进行注入。
+    3. 在Spring框架中，“自动装配”中的“装配”指的是将对象之间的依赖关系自动地设置和连接起来的过程。
+    这通常涉及到将一个bean的属性设置为另一个bean的引用，或者将一个bean的方法参数注入为另一个bean的实例。

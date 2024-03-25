@@ -1,0 +1,63 @@
+@Mapper
+public interface UserMapper {
+
+    @Select("select * from user where id= #{id}")
+    public User findById(Integer id);
+}
+
+
+这段代码是一个使用Spring Boot整合MyBatis时编写的Mapper接口，用于操作数据库中的用户数据。
+具体来说，这个UserMapper接口定义了一个方法findById，用于根据用户ID查询数据库中的用户信息。
+
+下面是对代码的详细分析：
+
+@Mapper注解：
+    @Mapper是MyBatis提供的一个注解，用于标识这是一个MyBatis的Mapper接口。
+    Spring Boot在启动时会自动扫描并注册带有这个注解的接口，以便后续通过Spring容器来调用接口中定义的方法。
+
+接口定义：
+    UserMapper是一个接口，没有实现类。在MyBatis中，Mapper接口的方法可以直接映射到SQL语句上，而无需编写实现类。
+    MyBatis会在运行时动态地生成这个接口的实现，并调用相应的SQL语句。
+
+方法定义：
+    findById方法接受一个Integer类型的参数id，并返回一个User类型的对象。
+    这个方法用于根据用户ID从数据库中查询用户信息。
+
+@Select注解：
+    @Select是MyBatis提供的一个注解，用于标识这个方法对应的SQL查询语句。
+    在@Select注解中，我们直接编写了SQL语句select * from user where id= #{id}。
+    这条SQL语句的含义是选择user表中id字段等于传入参数id的所有列。
+
+    #{id}是一个占位符，表示传入方法参数id的值将替换这个占位符。
+    MyBatis会自动处理这个替换过程，确保SQL语句的正确执行，并防止SQL注入攻击。
+
+            在Spring Boot项目中，这个UserMapper接口通常会被注入到Service层或者Controller层中，
+            然后通过调用findById方法来查询数据库中的用户信息。
+            而MyBatis则会在运行时根据@Select注解中的SQL语句动态生成SQL，
+            并执行查询操作，最后将查询结果封装成一个User对象返回。
+
+            需要注意的是，这个接口和方法仅仅定义了查询操作，并没有包含其他数据库操作（如插入、更新、删除等）。
+            如果需要执行其他操作，还需要在接口中添加相应的方法，
+            并使用MyBatis提供的其他注解（如@Insert、@Update、@Delete）来标识对应的SQL语句。
+
+
+public User findById(Integer id);
+    方法在 UserMapper 接口中的作用是定义一个查询操作，
+    用于从数据库中根据给定的用户ID (id) 查找并返回一个对应的 User 对象。
+查询操作：
+    该方法用于执行一个数据库查询操作。
+    在MyBatis中，当这个方法被调用时，它会映射到@Select注解中定义的SQL查询语句。
+参数传递：
+    方法接受一个类型为 Integer 的参数 id。
+    这个参数用于在SQL查询中替换占位符 #{id}，从而指定要查询的用户的ID。
+返回结果：
+    方法返回一个 User 类型的对象。
+    如果数据库中存在与给定ID匹配的用户记录，那么MyBatis会将该记录的数据映射到 User 对象中，并返回这个对象。如果数据库中不存在这样的记录，则通常返回 null。
+自动映射：
+    MyBatis会根据SQL查询返回的结果集和 User 类的字段自动进行映射。
+    也就是说，SQL查询返回的每一列都会尝试匹配 User 类的一个字段，并设置相应的值。
+
+简单的说：
+    当这个方法被调用的时候，就会使用接收到的参数来启动@Select注解中的sql语句进行数据库操作，
+    返回的结果是一个User类型的对象，这个User类型的对象会和User实体类中的相关字段进行映射，
+    将数据库操作后的信息映射到User类中的字段上
